@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Deutsch lernen: Materialien und Methoden</title>
+    <style>
+      :root {
+        --bg1: #0f172a;
+        --bg2: #1e293b;
+        --blue: #60a5fa;
+        --cyan: #67e8f9;
+        --mint: #86efac;
+        --yellow: #facc15;
+        --rose: #fda4af;
+        --violet: #c4b5fd;
+        --text: #e2e8f0;
+        --muted: #cbd5e1;
+        --card: rgba(15, 23, 42, 0.78);
+        --line: rgba(148, 163, 184, 0.35);
+        --shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+      }
+
+      * { box-sizing: border-box; }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Segoe UI", Arial, sans-serif;
+        background: linear-gradient(135deg, var(--bg1), var(--bg2), #111827);
+        color: var(--text);
+      }
+
+      .slide {
+        min-height: 100vh;
+        padding: 70px 7vw 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        scroll-snap-align: start;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .slide::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle at top left, rgba(96,165,250,0.18), transparent 30%),
+                    radial-gradient(circle at bottom right, rgba(134,239,172,0.18), transparent 30%);
+      }
+
+      .content {
+        width: min(1200px, 100%);
+        position: relative;
+        z-index: 1;
+      }
+
+      h1, h2, h3, p, ul, ol {
+        margin-top: 0;
+      }
+
+      .title {
+        font-size: clamp(2.8rem, 5vw, 5rem);
+        line-height: 1.1;
+        margin-bottom: 20px;
+        letter-spacing: -0.05em;
+      }
+
+      .subtitle {
+        font-size: clamp(1.1rem, 2vw, 1.6rem);
+        color: var(--muted);
+        max-width: 760px;
+      }
+
+      .label {
+        display: inline-block;
+        margin-bottom: 16px;
+        padding: 8px 16px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: rgba(255,255,255,0.04);
+        color: var(--cyan);
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        font-size: 0.72rem;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(250px, 1fr));
+        gap: 24px;
+      }
+
+      .card {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: 24px;
+        padding: 24px 22px;
+        box-shadow: var(--shadow);
+        backdrop-filter: blur(8px);
+      }
+
+      .card h3 {
+        margin-bottom: 14px;
+        font-size: 1.35rem;
+      }
+
+      .card p, .card li {
+        color: var(--muted);
+        font-size: 1.03rem;
+        line-height: 1.7;
+      }
+
+      .quote {
+        background: linear-gradient(135deg, rgba(96,165,250,0.14), rgba(196,181,253,0.12));
+        border: 1px solid rgba(96,165,250,0.3);
+        border-radius: 22px;
+        padding: 24px 28px;
+        font-size: clamp(1.1rem, 1.8vw, 1.5rem);
+        line-height: 1.7;
+        color: var(--text);
+      }
+
+      .kicker {
+        color: var(--cyan);
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        font-size: 0.76rem;
+      }
+
+      .two-col {
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 28px;
+        align-items: center;
+      }
+
+      .mini-box {
+        background: rgba(255,255,255,0.04);
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        padding: 18px;
+        margin-bottom: 14px;
+      }
+
+      .mini-box strong {
+        color: var(--yellow);
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        background: rgba(15,23,42,0.6);
+        border: 1px solid var(--line);
+        border-radius: 24px;
+        overflow: hidden;
+      }
+
+      th, td {
+        border-bottom: 1px solid var(--line);
+        padding: 16px 14px;
+        text-align: left;
+        vertical-align: top;
+      }
+
+      th {
+        background: rgba(96,165,250,0.12);
+        color: var(--cyan);
+        font-size: 0.92rem;
+      }
+
+      td {
+        color: var(--muted);
+        line-height: 1.7;
+      }
+
+      .highlight {
+        color: var(--yellow);
+        font-weight: 700;
+      }
+
+      .bullet-list {
+        list-style: none;
+        padding-left: 0;
+      }
+
+      .bullet-list li {
+        position: relative;
+        padding-left: 24px;
+        margin-bottom: 12px;
+        color: var(--muted);
+      }
+
+      .bullet-list li::before {
+        content: "•";
+        position: absolute;
+        left: 0;
+        color: var(--mint);
+        font-size: 1.5rem;
+        line-height: 1;
+      }
+
+      .small {
+        font-size: 0.9rem;
+        color: var(--muted);
+      }
+
+      .footer-note {
+        margin-top: 32px;
+        font-size: 0.88rem;
+        color: rgba(203,213,225,0.8);
+      }
+
+      @media (max-width: 800px) {
+        .grid, .two-col {
+          grid-template-columns: 1fr;
+        }
+
+        .slide {
+          padding-top: 60px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <section class="slide">
+      <div class="content">
+        <div class="label">Präsentation</div>
+        <h1 class="title">Deutsch lernen<br />mit den richtigen Materialien</h1>
+        <p class="subtitle">Was wirklich hilft, was weniger nützt und wie man effizient und motiviert lernen kann.</p>
+        <div class="footer-note">B1–B2 · Lernmaterialien · Apps · Bücher · Webseiten · Methoden</div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="content">
+        <div class="kicker">1. Thema</div>
+        <h2>Warum Lernmaterialien wichtig sind</h2>
+        <div class="grid">
+          <div class="card">
+            <h3>Materialien helfen bei:</h3>
+            <ul class="bullet-list">
+              <li>Struktur und Zeitmanagement</li>
+              <li>Sprachgefühl und Wiederholung</li>
+              <li>Grammatik, Vokabeln und Hörverstehen</li>
+              <li>Motivation und Regelmäßigkeit</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Ohne Plan ist Lernen schwer</h3>
+            <p>Wenn man nur zufällig Videos schaut oder Wörter lernt, entsteht keine Sicherheit. Gute Materialien machen Lernen klar, sinnvoll und langsam aber konstant.</p>
+            <p class="highlight">Erfolg entsteht nicht nur durch Motivation, sondern durch Wiederholung.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="content">
+        <div class="kicker">2. Grundidee</div>
+        <h2>Das beste Lernsystem ist nicht nur ein App</h2>
+        <div class="two-col">
+          <div>
+            <div class="quote">„Ein guter Lernplan ist wie ein gutes Werkzeug: Man spart Zeit und macht weniger Fehler.“</div>
+            <div class="footer-note">Wenn man nur eine App nutzt, kann man leicht nur Wörter merken, aber nicht richtig sprechen.</div>
+          </div>
+          <div class="card">
+            <h3>Wichtig:</h3>
+            <ul class="bullet-list">
+              <li>Wortschatz</li>
+              <li>Grammatik</li>
+              <li>Hören</li>
+              <li>Lesen</li>
+              <li>Sprechen</li>
+              <li>Schreiben</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="content">
+        <div class="kicker">3. Apps</div>
+        <h2>Apps: praktisch, aber mit Grenzen</h2>
+        <div class="grid">
+          <div class="card">
+            <h3>Duolingo</h3>
+            <p><strong>Plus:</strong> einfach, motivierend, gut für Anfangsphase, tägliche Wiederholung.</p>
+            <p><strong>Minus:</strong> wenig Grammatik, wenig echte Konversation, manchmal zu oberflächlich.</p>
+            <p class="small">Gut für: Vokabeln, Basics, Routine.</p>
+          </div>
+          <div class="card">
+            <h3>Andere Apps</h3>
+            <ul class="bullet-list">
+              <li>Babbel – gut für Grammatik und Alltagssätze</li>
+              <li>Busuu – gute Übungen und Gesprächsbeispiele</li>
+              <li>Memrise – gut für Wortschatz im Kontext</li>
+              <li>Anki – ideal für Wiederholung und Vokabeln</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="content">
+        <div class="kicker">4. Vergleich</div>
+        <h2>Apps im Überblick</h2>
+        <table>
+          <tr>
+            <th>App</th>
+            <th>Gut für</th>
+            <th>Stärken</th>
+            <th>Schwächen</th>
+          </tr>
+          <tr>
+            <td>Duolingo</td>
+            <td>Routine, Basiswortschatz</td>
+            <td>Einfach, motivierend, täglich nutzbar</td>
+            <td>Wenig tiefere Grammatik</td>
+          </tr>
+          <tr>
+            <td>Babbel</td>
+            <td>Grammatik, Alltag</td>
+            <td>Strukturierte Lektionen</td>
+            <td>Preis höher</td>
+          </tr>
+          <tr>
+            <td>Anki</td>
+            <td>Vokabeln, Wiederholung</td>
+            <td>Sehr effektiv für Memorieren</td>
+            <td>Man muss selbst Inhalte erstellen</td>
+          </tr>
+          <tr>
+            <td>Busuu</td>
+            <td>Übungen, Lesen, Schreiben</td>
+            <td>Vielfältige Aufgaben</td>
+            <td>Kann monoton sein</td>
+          </tr>
+        </table>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="content">
+        <div class="kicker">5. Webseiten</div>
+        <h2>Die besten Webseiten zum Lernen</h2>
+        <div class="grid">
+          <div class="card">
+            <h3>Deutsch lernen online</h3>
+            <ul class="bullet-list">
+              <li>DW Learn German – Hörübungen, Texte, Videos</li>
+              <li>Goethe-Institut – gute Grammatik und Niveaustufen</li>
+              <li>Deutsche Welle – realistisch, motivierend, kostenlos</li>
+              <li>Lingolia – Grammatik klar erklärt</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Warum wichtig?</h3>
+            <p>Webseiten geben mehr Kontext als reine App-Übungen. Man hört echte Sprache, liest kurze Texte und sieht, wie Deutsch im Alltag funktioniert.</p>
+            <p class="highlight">Das ist sehr wichtig für B1 und B2.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="content">
+        <div class="kicker">6. Bücher und Lehrbücher</div>
+        <h2>Bücher: solide Grundlage</h2>
+        <div class="grid">
+          <div class="card">
+            <h3>Vorteile von Büchern</h3>
+            <ul class="bullet-list">
+              <li>Strukturierte Grammatik</li>
+              <li>Tiefe Erklärung</li>
+              <li>Mehr Ruhe und Fokus</li>
+              <li>Gut für Hausaufgaben und Wiederholung</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Was man wählen kann</h3>
+            <ul class="bullet-list">
+              <li>Einfaches Lehrbuch für A1–B1</li>
+              <li>Grammatikbuch für Regeln und Übungen</li>
+              <li>Lesebücher mit kurzen Geschichten</li>
+              <li>Wörterbücher für Alltag und Beruf</li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-note">Bücher sind besonders gut, wenn man eine klare Grundlage braucht und nicht nur schnelle Antworten aus einer App.</div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="content">
+        <div class="kicker">7. Lernen mit Video und Audio</div>
+        <h2>Hören ist der Schlüssel</h2>
+        <div class="two-col">
+          <div class="card">
+            <h3>Was hilft wirklich?</h3>
+            <ul class="bullet-list">
+              <li>Podcasts auf Deutsch</li>
+              <li>YouTube-Kanäle mit einfachem Deutsch</li>
+              <li>Nachrichten mit Untertiteln</li>
+              <li>Filme und Serien mit wenig Aufwand</li>
+            </ul>
+          </div>
+          <div>
+            <div class="quote">„Man lernt Sprache nicht nur mit Regeln, sondern mit Klang, Intonation und Wiederholung.“</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="content">
+        <div class="kicker">8. Plus und Minus</div>
+        <h2>Was ist gut, was ist weniger gut?</h2>
+        <div class="grid">
+          <div class="card">
+            <h3>Plus</h3>
+            <ul class="bullet-list">
+              <li>Apps sind schnell und bequem</li>
+              <li>Bücher geben Sicherheit und Struktur</li>
+              <li>Webseiten sind kostenlos und vielfältig</li>
+              <li>Videos verbessern Hören und Sprechen</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Minus</h3>
+            <ul class="bullet-list">
+              <li>Man lernt oft ohne echte Kommunikation</li>
+              <li>Einzelne Methoden sind nicht genug</li>
+              <li>Man verliert Motivation ohne Plan</li>
+              <li>Grammatik ohne Praxis bleibt oberflächlich</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="content">
+        <div class="kicker">9. Mein Rat</div>
+        <h2>Welche Kombination ist am besten?</h2>
+        <div class="card">
+          <ul class="bullet-list">
+            <li><strong>Duolingo</strong> – für tägliche Routine</li>
+            <li><strong>Grammatikbuch oder Webseite</strong> – für Regeln und Struktur</li>
+            <li><strong>DW / YouTube / Podcast</strong> – für Hören und Alltagssprache</li>
+            <li><strong>Lesen und Schreiben</strong> – für Sicherheit und Ausdruck</li>
+            <li><strong>Sprachpartner</strong> – für echtes Sprechen</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="content">
+        <div class="kicker">10. Praktischer Lernplan</div>
+        <h2>Ein einfacher Wochenplan</h2>
+        <table>
+          <tr>
+            <th>Tage</th>
+            <th>Aktivität</th>
+            <th>Zeit</th>
+          </tr>
+          <tr>
+            <td>Montag</td>
+            <td>Vokabeln + Grammatik</td>
+            <td>25–30 Min</td>
+          </tr>
+          <tr>
+            <td>Dienstag</td>
+            <td>Hörverstehen + kurze Texte</td>
+            <td>25–30 Min</td>
+          </tr>
+          <tr>
+            <td>Mittwoch</td>
+            <td>Wiederholung + Sprechen</td>
+            <td>25–30 Min</td>
+          </tr>
+          <tr>
+            <td>Donnerstag</td>
+            <td>Grammatikübungen</td>
+            <td>25–30 Min</td>
+          </tr>
+          <tr>
+            <td>Freitag</td>
+            <td>Lesen + schreiben</td>
+            <td>30 Min</td>
+          </tr>
+          <tr>
+            <td>Samstag</td>
+            <td>Videos / Podcast / Gespräch</td>
+            <td>30–40 Min</td>
+          </tr>
+        </table>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="content">
+        <div class="kicker">11. Häufige Fehler</div>
+        <h2>Was viele falsch machen</h2>
+        <div class="grid">
+          <div class="card">
+            <ul class="bullet-list">
+              <li>Nur Apps nutzen und nichts anderes</li>
+              <li>Zu viele neue Wörter ohne Wiederholung</li>
+              <li>Keine Konversation üben</li>
+              <li>Grammatik nur auswendig lernen</li>
+            </ul>
+          </div>
+          <div class="card">
+            <ul class="bullet-list">
+              <li>Zu wenig Zeit für Hören</li>
+              <li>keine regelmäßige Routine</li>
+              <li>schlechte Motivation ohne Ziel</li>
+              <li>zu viel auf einmal</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="content">
+        <div class="kicker">12. Schlussfolgerung</div>
+        <h2>Was ich empfehle</h2>
+        <div class="grid">
+          <div class="card">
+            <h3>Für Anfänger</h3>
+            <p>Duolingo + Grammatikübungen + einfache Videos. Das ist gut für die erste Basis.</p>
+          </div>
+          <div class="card">
+            <h3>Für fortgeschrittene</h3>
+            <p>Webseiten, Bücher, Podcasts, Lesen und echte Gespräche. Das hilft, Sprache tiefer zu verstehen.</p>
+          </div>
+        </div>
+        <div class="quote" style="margin-top: 28px;">„Langsamer Fortschritt ist trotzdem Fortschritt. Wichtig ist, regelmäßig zu lernen und nicht aufzuhören.“</div>
+      </div>
+    </section>
+  </body>
+</html>
